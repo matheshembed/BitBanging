@@ -137,15 +137,23 @@ STM32 PB14 (TX) ----------> Logic Analyzer
 
 ---
 
-# Images
+# Hardware Setup
 
-## Circuit Connection
+![Arduino and STM32 Hardware Setup](Images/ckt1.jpeg)
 
-![Circuit Setup]("Images/logic_analyzerop.jpeg")
+---
+### STM32 Bare Metal UART Bit-Banging
+
+![STM32 Bare Metal UART Implementation](Images/codesnip2.jpeg)
 
 ---
 
+### UART Frame Captured Using Logic Analyzer
 
+![Logic_Analyzer](Images/logic_op.jpeg)
+
+
+---
 # Validation Performed
 
 ## Test 1
