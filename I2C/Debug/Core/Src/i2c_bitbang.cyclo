@@ -1,0 +1,17 @@
+../Core/Src/i2c_bitbang.c:10:13:SDA_HIGH	1
+../Core/Src/i2c_bitbang.c:15:13:SDA_LOW	1
+../Core/Src/i2c_bitbang.c:20:13:SCL_HIGH	1
+../Core/Src/i2c_bitbang.c:25:13:SCL_LOW	1
+../Core/Src/i2c_bitbang.c:30:13:I2C_Delay	1
+../Core/Src/i2c_bitbang.c:35:13:I2C_Start	1
+../Core/Src/i2c_bitbang.c:55:13:I2C_Stop	1
+../Core/Src/i2c_bitbang.c:70:13:I2C_WriteBit	2
+../Core/Src/i2c_bitbang.c:88:14:I2C_WriteByte	2
+../Core/Src/i2c_bitbang.c:96:17:SDA_READ	1
+../Core/Src/i2c_bitbang.c:101:16:I2C_ReadACK	1
+../Core/Src/i2c_bitbang.c:122:16:I2C_ReadByte	3
+../Core/Src/i2c_bitbang.c:145:13:I2C_SendNACK	1
+../Core/Src/i2c_bitbang.c:160:6:I2C_WriteRegister	1
+../Core/Src/i2c_bitbang.c:179:9:I2C_ReadRegister	1
+../Core/Src/i2c_bitbang.c:209:13:I2C_SendACK	1
+../Core/Src/i2c_bitbang.c:228:6:I2C_ReadRegisters	3

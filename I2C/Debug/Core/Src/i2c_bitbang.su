@@ -1,0 +1,17 @@
+../Core/Src/i2c_bitbang.c:10:13:SDA_HIGH	8	static
+../Core/Src/i2c_bitbang.c:15:13:SDA_LOW	8	static
+../Core/Src/i2c_bitbang.c:20:13:SCL_HIGH	8	static
+../Core/Src/i2c_bitbang.c:25:13:SCL_LOW	8	static
+../Core/Src/i2c_bitbang.c:30:13:I2C_Delay	8	static
+../Core/Src/i2c_bitbang.c:35:13:I2C_Start	8	static
+../Core/Src/i2c_bitbang.c:55:13:I2C_Stop	8	static
+../Core/Src/i2c_bitbang.c:70:13:I2C_WriteBit	16	static
+../Core/Src/i2c_bitbang.c:88:14:I2C_WriteByte	24	static
+../Core/Src/i2c_bitbang.c:96:17:SDA_READ	8	static
+../Core/Src/i2c_bitbang.c:101:16:I2C_ReadACK	16	static
+../Core/Src/i2c_bitbang.c:122:16:I2C_ReadByte	16	static
+../Core/Src/i2c_bitbang.c:145:13:I2C_SendNACK	8	static
+../Core/Src/i2c_bitbang.c:160:6:I2C_WriteRegister	16	static
+../Core/Src/i2c_bitbang.c:179:9:I2C_ReadRegister	24	static
+../Core/Src/i2c_bitbang.c:209:13:I2C_SendACK	8	static
+../Core/Src/i2c_bitbang.c:228:6:I2C_ReadRegisters	32	static
