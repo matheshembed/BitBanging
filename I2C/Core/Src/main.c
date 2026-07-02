@@ -23,6 +23,8 @@
 /* USER CODE BEGIN Includes */
 #include "i2c_bitbang.h"
 #include "bmp280.h"
+#include "i2c_lcd.h"
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -41,22 +43,26 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
 
 /* USER CODE BEGIN PV */
+
+BMP280_Status_t bmpStatus;
 float temperature;
-float pressure;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int row = 0;
+int col = 0;
 /* USER CODE END 0 */
 
 /**
@@ -67,13 +73,13 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+	 char lcdBuffer[20];
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-	HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -88,13 +94,18 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
-  if (BMP280_Init() == 0)
+
+  bmpStatus = BMP280_Init();
+
+     if (bmpStatus != BMP280_OK)
      {
-         Error_Handler();      // Sensor not detected
+         Error_Handler();
      }
 
+     lcd_init ();
 
 
   /* USER CODE END 2 */
@@ -106,13 +117,20 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
 	  temperature = BMP280_ReadTemperature();
 
-	        // We'll implement this next
-	        // pressure = BMP280_ReadPressure();
+	      lcd_clear();
 
-	        HAL_Delay(1000);
+	      /* First Row */
+	      lcd_put_cur(0, 0);
+	      lcd_send_string("I2C Bit-Banged");
+
+	      /* Second Row */
+	      sprintf(lcdBuffer, "Temp: %.2f C", temperature);
+	      lcd_put_cur(1, 0);
+	      lcd_send_string(lcdBuffer);
+
+	      HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
@@ -165,6 +183,40 @@ void SystemClock_Config(void)
 }
 
 /**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 100000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -206,8 +258,8 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
   while (1)
+  __disable_irq();
   {
   }
   /* USER CODE END Error_Handler_Debug */

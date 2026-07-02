@@ -1,111 +1,66 @@
-# UART Bit Banging
+# Bit Banging
 
-Software implementation of UART communication using **Arduino Uno (ATmega328P)** and **STM32 Nucleo-F446RE** without relying on dedicated hardware UART peripherals.
+Software implementation of communication protocols using **GPIO bit banging** without relying on dedicated hardware peripherals.
 
-The goal of this repository is to understand UART communication at the bit level by manually generating and sampling UART frames using GPIO pins, software timing, and register-level programming.
+This repository focuses on understanding serial communication protocols from the firmware level by manually generating protocol timing, frame structures, and bus transactions using software.
+
+The objective is to develop production-style embedded drivers while gaining a deeper understanding of how communication protocols operate internally.
 
 ---
 
 # Repository Structure
 
 ```text
-UART/
+BitBanging/
 │
-├── Arduino/
-│   ├── UART_BB/
-│   └── UART_Bit_Bang_UNO/
+├── UART/
+│   ├── README.md
+│   ├── Arduino/
+│   ├── STM32_HAL/
+│   └── STM32_BareMetal/
 │
-└── ST/
-    ├── 01_UART_BB_TX/
-    └── 02_UART_BareMetal/
+├── I2C/
+│   ├── README.md
+│   ├── STM32_BitBang/
+│   ├── BMP280 Driver/
+│   └── LCD Interface/
+│
+├── Images/
+│
+└── README.md
 ```
 
 ---
 
-# Projects
+# Repository Overview
 
-## Arduino
+## UART
 
-### UART_Bit_Bang_UNO
+Software implementation of UART communication using GPIO pins.
 
-Software UART implementation on Arduino Uno.
+Implemented on
 
-### Features
+- Arduino Uno (ATmega328P)
+- STM32 Nucleo-F446RE
 
-- Software UART Transmission
-- Software UART Reception
-- Manual Start Bit Generation
-- Manual Stop Bit Generation
-- Bit Timing Control
-- Logic Analyzer Validation
+📄 See `UART/README.md`
 
 ---
 
-### UART_BB
+## I²C
 
-UART transmitter application used to validate STM32 software UART implementations.
+Software implementation of the I²C protocol using GPIO bit banging.
 
-### Features
+Implemented on
 
-- UART Test Pattern Generation
-- STM32 RX Validation
-- Logic Analyzer Verification
+- STM32 Nucleo-F446RE
 
----
+Applications
 
-## STM32 Nucleo-F446RE
+- BMP280 Temperature Sensor Driver
+- I²C LCD Interface
 
-### 01_UART_BB_TX (HAL)
-
-UART transmission implemented using HAL GPIO APIs.
-
-### Features
-
-- GPIO Based UART Transmission
-- Software Generated UART Frames
-- DWT Cycle Counter Timing
-- Logic Analyzer Validation
-
----
-
-### 02_UART_BareMetal
-
-Complete software UART implementation using register-level programming.
-
-### Features
-
-- Bare Metal GPIO Configuration
-- Register-Level Programming
-- DWT Cycle Counter Based Timing
-- Software UART Transmission
-- Software UART Reception
-- PLL Based 84 MHz Clock Configuration
-- Arduino ↔ STM32 Communication Testing
-
----
-
-# UART Frame Format
-
-```text
-Idle | Start | D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | Stop
-
-HIGH |  LOW  |                Data                | HIGH
-```
-
-Configuration used:
-
-```text
-Baud Rate : 9600
-Data Bits : 8
-Parity    : None
-Stop Bits : 1
-```
-
-UART Configuration:
-
-```text
-8N1
-```
+📄 See `I2C/README.md`
 
 ---
 
@@ -113,142 +68,69 @@ UART Configuration:
 
 - STM32 Nucleo-F446RE
 - Arduino Uno
+- BMP280 Sensor
+- I²C LCD (PCF8574)
 - Logic Analyzer
-- Jumper Wires
-- USB Cables
 
 ---
 
-# Test Setup
+# Development Approach
 
-## Arduino TX → STM32 RX
+Every protocol is implemented from scratch to understand the complete communication sequence.
 
-```text
-Arduino D1 (TX)  ---------->  STM32 PB13 (RX)
+The implementation emphasizes
 
-Arduino GND      ---------->  STM32 GND
-```
+- Embedded C
+- GPIO Manipulation
+- Software Timing
+- Register-Level Programming
+---
 
-## STM32 TX → Logic Analyzer
+# Validation
 
-```text
-STM32 PB14 (TX) ----------> Logic Analyzer
-```
+Each implementation is verified using a Logic Analyzer.
+
+Validation includes
+
+- Frame Timing
+- Protocol Timing
+- ACK / NACK Detection
+- Register Transactions
+- Device Communication
+- Sensor Data Verification
 
 ---
 
-# Hardware Setup
+# Learning Outcomes
 
-![Arduino and STM32 Hardware Setup](Images/ckt1.jpeg)
+This repository demonstrates practical experience in
 
----
-### STM32 Bare Metal UART Bit-Banging
-
-![STM32 Bare Metal UART Implementation](Images/codesnip2.jpeg)
-
----
-
-### UART Frame Captured Using Logic Analyzer
-
-![Logic_Analyzer](Images/logic_op.jpeg)
-
-
----
-# Validation Performed
-
-## Test 1
-
-Arduino Software UART → Logic Analyzer
-
-Verified:
-
-- Start Bit
-- Stop Bit
-- Data Bits
-- Baud Rate Accuracy
+- Embedded C
+- STM32 Firmware Development
+- HAL Driver Development
+- Bare Metal Programming
+- GPIO Programming
+- UART Protocol
+- I²C Protocol
+- Sensor Driver Development
+- LCD Driver Development
+- Logic Analyzer Debugging
+- Embedded Firmware Validation
 
 ---
 
-## Test 2
+# Future Work
 
-STM32 HAL Bit-Banged UART → Logic Analyzer
+The repository will continue to expand with additional software protocol implementations.
 
-Verified:
+Planned additions include
 
-- UART Frame Structure
-- Data Transmission
-- Bit Timing
-
----
-
-## Test 3
-
-STM32 Bare Metal UART → Logic Analyzer
-
-Verified:
-
-- Register Level GPIO Control
-- Accurate Bit Timing
-- UART Frame Generation
-
----
-
-## Test 4
-
-Arduino TX → STM32 RX
-
-Verified:
-
-- Start Bit Detection
-- Bit Sampling
-- Data Reconstruction
-
----
-
-## Test 5
-
-Arduino ↔ STM32 Communication
-
-Verified:
-
-- Data Transmission
-- Data Reception
-- Software UART Interoperability
-
----
-
-
----
-
-# Key Learnings
-
-- Difference between Hardware UART and Software UART
-- UART Timing Requirements
-- Importance of Mid-Bit Sampling
-- System Clock Impact on Communication
-- DWT Based Precise Delays
-- Register-Level GPIO Programming
-- UART Debugging using Logic Analyzer
-- Bare Metal Firmware Development
-
----
-
-# Future Improvements
-
-- Timer Based Software UART
-- Interrupt Driven Reception
-- Configurable Baud Rate Support
-- Driver Layer Abstraction
-- Hardware UART Driver Development
 - SPI Bit Banging
-- I2C Bit Banging
+- SPI Sensor Drivers
+- Driver Abstraction Layer
+
 
 ---
 
-# Author
-
-**Matheshvarma**
-
-Embedded Systems | Firmware Development | STM32 | Embedded C
-
-GitHub: https://github.com/matheshembed
+GitHub: 
+https://github.com/matheshembed

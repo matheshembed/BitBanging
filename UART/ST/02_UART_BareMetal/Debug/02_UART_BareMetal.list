@@ -943,7 +943,7 @@ int main(void)
 {
  8000be8:	b580      	push	{r7, lr}
  8000bea:	af00      	add	r7, sp, #0
-	Clock_Init_84MHz();
+	Clock_Init_84MHz(); //Make sure your Clock runs at certain speed to maintain the baud rate
  8000bec:	f000 f8f6 	bl	8000ddc <Clock_Init_84MHz>
 	DWT_Init();
  8000bf0:	f000 f846 	bl	8000c80 <DWT_Init>
@@ -1305,6 +1305,7 @@ void BitDelay_1_5(void)
  8000dd8:	e0001000 	.word	0xe0001000
 
 08000ddc <Clock_Init_84MHz>:
+
 void Clock_Init_84MHz(void)
 {
  8000ddc:	b480      	push	{r7}

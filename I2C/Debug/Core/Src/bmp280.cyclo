@@ -1,4 +1,4 @@
-../Core/Src/bmp280.c:28:16:BMP280_ReadChipID	1
-../Core/Src/bmp280.c:34:9:BMP280_Init	2
-../Core/Src/bmp280.c:55:13:BMP280_ReadCalibration	1
-../Core/Src/bmp280.c:76:7:BMP280_ReadTemperature	1
+../Core/Src/bmp280.c:58:16:BMP280_ReadChipID	1
+../Core/Src/bmp280.c:64:13:BMP280_ReadCalibration	1
+../Core/Src/bmp280.c:92:17:BMP280_Init	2
+../Core/Src/bmp280.c:116:7:BMP280_ReadTemperature	1

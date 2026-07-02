@@ -7,4 +7,4 @@
 ../Src/main.c:121:6:UART_SendString	2
 ../Src/main.c:129:9:UART_ReceiveByte	4
 ../Src/main.c:163:6:BitDelay_1_5	2
-../Src/main.c:171:6:Clock_Init_84MHz	4
+../Src/main.c:172:6:Clock_Init_84MHz	4
