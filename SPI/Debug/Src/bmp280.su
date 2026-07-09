@@ -1,0 +1,4 @@
+../Src/bmp280.c:12:6:BMP280_Init	16	static
+../Src/bmp280.c:19:9:BMP280_ReadRegister	24	static
+../Src/bmp280.c:37:6:BMP280_WriteRegister	16	static
+../Src/bmp280.c:52:6:BMP280_ReadRegisters	40	static

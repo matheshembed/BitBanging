@@ -1,0 +1,9 @@
+../Src/spi_bitbang.c:11:6:SPI_BB_Init	32	static
+../Src/spi_bitbang.c:54:6:SPI_BB_Select	16	static
+../Src/spi_bitbang.c:61:6:SPI_BB_Deselect	16	static
+../Src/spi_bitbang.c:67:9:SPI_BB_TransferBit	24	static
+../Src/spi_bitbang.c:103:9:SPI_BB_TransferByte	24	static
+../Src/spi_bitbang.c:119:6:SPI_BB_TransferBuffer	32	static
+../Src/spi_bitbang.c:142:6:SPI_BB_Transmit	24	static
+../Src/spi_bitbang.c:153:6:SPI_BB_Receive	24	static
+../Src/spi_bitbang.c:163:6:SPI_BB_TransmitReceive	24	static

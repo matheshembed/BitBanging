@@ -1,0 +1,9 @@
+../Src/spi_bitbang.c:11:6:SPI_BB_Init	1
+../Src/spi_bitbang.c:54:6:SPI_BB_Select	1
+../Src/spi_bitbang.c:61:6:SPI_BB_Deselect	1
+../Src/spi_bitbang.c:67:9:SPI_BB_TransferBit	2
+../Src/spi_bitbang.c:103:9:SPI_BB_TransferByte	2
+../Src/spi_bitbang.c:119:6:SPI_BB_TransferBuffer	4
+../Src/spi_bitbang.c:142:6:SPI_BB_Transmit	1
+../Src/spi_bitbang.c:153:6:SPI_BB_Receive	1
+../Src/spi_bitbang.c:163:6:SPI_BB_TransmitReceive	1
